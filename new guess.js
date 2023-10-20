@@ -1,23 +1,24 @@
 var readline = require("readline-sync");
 
-// 生成一个随机的4位数字
+// 隨機生成4個數字
 var answer = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 answer.sort(function(a, b) { return Math.random() - 0.5; });
-answer = answer.slice(0, 4); // 获取前4个元素
+answer = answer.slice(0, 4); // 抓取前面4個數字
 
-// 初始化A和B的计数器
+// 將AB歸零
 var counterA = 0;
 var counterB = 0;
 
-// 主游戏循环
-for (var i = 0; i < 7; i++) {
+// 主要遊戲
+for (var i = 0; i < 20; i++) //20次機會
+{
     do {
-        var guess = readline.question("請猜測4位數：");
+        var guess = readline.question("Please guess 4 digits");
 
         if (!isNaN(guess) && guess.length == 4) {
             break;
         } else {
-            console.log("輸入4位數字。");
+            console.log("4 digits please!。");
             continue;
         }
     } while (true);
