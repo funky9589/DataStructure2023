@@ -70,8 +70,8 @@ Life.prototype.update = function(){
 
 
 
-var game1 = new Life(3,3);
-game1.grid[1][0]=LIVE;S
+var game1 = new Life(4,3);
+game1.grid[1][0]=LIVE;
 game1.grid[1][1]=LIVE;
 game1.grid[1][2]=LIVE;
 console.log("(1,1):"+game1.calcNeighbor(1,1));
@@ -82,5 +82,50 @@ console.log(game1.grid)
 //接著，將第二行的三個細胞設置為活著的狀態（LIVE）。
 //然後，分別使用 calcNeighbor 方法計算了指定位置 (1,1) 和 (2,0) 
 //周圍的活鄰居數量，最後呼叫了 update 方法更新下一代。
+
+//var game2 = new Life(30,30);
+class DrawGame{
+  constructor(_game, _canvas){
+      this.game = _game;
+      this.canvas = document.getElementById(_canvas).getContext("2d");
+      var size1 = document.getElementById(_canvas).width/this.game.col;
+      var size2 = document.getElementById(_canvas).height/this.game.row;
+      this.size = Math.min(size1,size2);
+      this.canvas.lineWidth = 1;
+      this.canvas.lineStyle = "#000";
+  }
+}
+
+DrawGame.prototype.draw= function(){
+  for (let row = 0; row < this.game.row; row++) {
+      for (let col = 0; col < this.game.col; col++) {
+         if(this.game.grid[row][col]==LIVE){
+             this.canvas.fillStyle = "#f00";
+         }else{
+              this.canvas.fillStyle = "#fff";
+         }   
+          this.canvas.fillRect(col*this.size, row*this.size, this.size, this.size);
+          this.canvas.strokeRect(col*this.size, row*this.size, this.size, this.size);
+      }
+  }
+}
+
+var game1 = new Life(5,5);
+game1.grid[1][0]=LIVE;
+game1.grid[1][1]=LIVE;
+game1.grid[1][2]=LIVE;
+console.log("(1,1):"+game1.calcNeighbor(1,1));
+console.log("(2,0):"+game1.calcNeighbor(2,0));
+
+var drawgame1 = new DrawGame(game1, "board");
+drawgame1.draw();
+
+function next(){
+  game1.update();
+  //draw
+  drawgame1.draw();
+}
+
+// console.log(game1.grid)
 
 //var game2 = new Life(30,30);

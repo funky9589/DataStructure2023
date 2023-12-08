@@ -48,3 +48,49 @@ game1.grid[1][2]=LIVE;
 console.log("(1,1):"+game1.calcNeighbor(1,1));
 console.log("(2,0):"+game1.calcNeighbor(2,0));
 //var game2 = new Life(30,30);
+
+class DrawGame{
+    constructor(_game, _canvas){
+        this.game = _game;
+        this.canvas = document.getElementById(_canvas).getContext("2d");
+        var size1 = document.getElementById(_canvas).width/this.game.col;
+        var size2 = document.getElementById(_canvas).height/this.game.row;
+        this.size = Math.min(size1,size2);
+        this.canvas.lineWidth = 1;
+        this.canvas.lineStyle = "#000";
+    }
+}
+
+DrawGame.prototype.draw= function(){
+    for (let row = 0; row < this.game.row; row++) {
+        for (let col = 0; col < this.game.col; col++) {
+           if(this.game.grid[row][col]==LIVE){
+               this.canvas.fillStyle = "#f00";
+           }else{
+                this.canvas.fillStyle = "#fff";
+           }   
+            this.canvas.fillRect(col*this.size, row*this.size, this.size, this.size);
+            this.canvas.strokeRect(col*this.size, row*this.size, this.size, this.size);
+        }
+    }
+}
+
+var game1 = new Life(5,5);
+game1.grid[1][0]=LIVE;
+game1.grid[1][1]=LIVE;
+game1.grid[1][2]=LIVE;
+console.log("(1,1):"+game1.calcNeighbor(1,1));
+console.log("(2,0):"+game1.calcNeighbor(2,0));
+
+var drawgame1 = new DrawGame(game1, "board");
+drawgame1.draw();
+
+function next(){
+    game1.update();
+    //draw
+    drawgame1.draw();
+}
+
+// console.log(game1.grid)
+
+//var game2 = new Life(30,30);
