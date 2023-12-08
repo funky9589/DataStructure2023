@@ -129,3 +129,13 @@ function next(){
 // console.log(game1.grid)
 
 //var game2 = new Life(30,30);
+
+function boardClick(event){
+  var row = Math.floor(event.offsetY/drawgame1.size);
+  var col = Math.floor(event.offsetX/drawgame1.size);
+  if(drawgame1.game.grid[row][col]==LIVE)
+      drawgame1.game.grid[row][col]=DEAD;
+  else
+      drawgame1.game.grid[row][col]=LIVE;
+  drawgame1.draw();
+}
