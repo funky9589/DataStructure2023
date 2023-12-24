@@ -36,11 +36,13 @@ function drawBoard() {
                 canvas.fillStyle = "#f00";
             }
             canvas.fillRect(col * 50, row * 50, 50, 50);
+            //繪製矩形的方法 語法 context.fillRect(x, y, width, height);
         }
     }
 }
 function drawPoint(row, col){
     var canvas = document.getElementById("board").getContext("2d");
+    //獲取指定 id 為 "board" 的 Canvas 元素的 2D 繪圖環境。
     if (MAZE[row][col] == 0) {
         canvas.fillStyle = "#ffffff";
     }
@@ -56,12 +58,14 @@ var dir=[[-1,0],[0,-1],[1,0],[0,1]]
 dir.sort((a,b)=>{
     return Math.random()-0.5;
 })
+//亂數進行排序
 function go() {
     drawBoard();
     //Method 2
     while (Step.row != Exit.row || Step.col != Exit.col) {
         MAZE[Step.row][Step.col] = 2;
         drawPoint(Step.row, Step.col);
+        //在 Canvas 上繪製走過的路徑，使用 drawPoint 函式。
         //up
         if (MAZE[Step.row + dir[0][0]][Step.col+dir[0][1]] == 0) {
             Stack.push(new Point(Step.row, Step.col));
