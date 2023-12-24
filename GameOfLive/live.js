@@ -45,7 +45,8 @@ Life.prototype.calcNeighbor = function(row, col){
 Life.prototype.update = function(){
     //copy of grid for next generation
     //var nextGrid=this.grid; //same memory
-    var nextGrid = JSON.parse(JSON.stringify(this.grid));//用來儲存下一段記憶體避免重複使用
+    var nextGrid = JSON.parse(JSON.stringify(this.grid));
+    //用來儲存下一段記憶體避免重複使用
     // var kid= {age:5, hight:170}
     // var kid1 = kid
     var count=0;//這個變數用來儲存每個細胞周圍的活鄰居數量
@@ -114,6 +115,7 @@ var game1 = new Life(5,5);
 game1.grid[1][0]=LIVE;
 game1.grid[1][1]=LIVE;
 game1.grid[1][2]=LIVE;
+//將指定位置的細胞設置為活著的狀態
 console.log("(1,1):"+game1.calcNeighbor(1,1));
 console.log("(2,0):"+game1.calcNeighbor(2,0));
 
