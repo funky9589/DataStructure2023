@@ -1,5 +1,6 @@
 const LIVE=1;
 const DEAD=0;
+//const定義常數使用另外也有 var和let的用法
 
 
 class Life{
@@ -26,6 +27,7 @@ Life.prototype.statusAt = function(row, col){
       return DEAD;
     else
       return this.grid[row][col];
+    //prototype指的是模型 它可以是函數原型、物件原型  取決於上下文
 }
 Life.prototype.calcNeighbor = function(row, col){
     var count=0;
@@ -77,12 +79,11 @@ game1.grid[1][1]=LIVE;
 game1.grid[1][2]=LIVE;
 console.log("(1,1):"+game1.calcNeighbor(1,1));
 console.log("(2,0):"+game1.calcNeighbor(2,0));
-game1.update();
+game1.update();// 根據生命遊戲的規則更新遊戲狀態
 console.log(game1.grid)
-//初始化了一個 3x3 的網格。
+//初始化一個 4x3 的網格。
 //接著，將第二行的三個細胞設置為活著的狀態（LIVE）。
 //然後，分別使用 calcNeighbor 方法計算了指定位置 (1,1) 和 (2,0) 
-//周圍的活鄰居數量，最後呼叫了 update 方法更新下一代。
 
 //var game2 = new Life(30,30);
 class DrawGame{
