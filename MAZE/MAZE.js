@@ -25,6 +25,7 @@ var Stack = [];
 /*Method 1
 while(Step.row != Exit.row || Step.col != Exit.col){
     MAZE[Step.row][Step.col] = 2;
+     // 將迷宮中目前的位置標記為已經走過的路徑（用數字 2 代表）
     //up
     if(MAZE[Step.row-1][Step.col] == 0){
         Stack.push(new Point(Step.row,Step.col));
